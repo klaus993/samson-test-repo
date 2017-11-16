@@ -10,7 +10,10 @@ set :deploy_to, "~/"
 # Default value for :log_level is :debug
 set :log_level, :info
 
-namespace :deploy do
-  run "touch ~/SAMSON_FILE"
-end
+role :test, "deploy@app11-stag.ec2-us-east-1.restorando.net"
 
+namespace :deploy do
+  on roles(:mailserver) do
+    execute "touch ~/SAMSON_FILE"
+  end
+end
